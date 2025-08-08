@@ -1,8 +1,9 @@
 
 import Raty from 'raty-js';
 import Swiper from 'swiper';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
+import 'swiper/css/pagination';
 
 import { api } from '../api.js';
 import starOn from '../img/star-full.svg';
@@ -63,10 +64,17 @@ export async function initFeedback() {
     });
 
         new Swiper('.feedback-swiper', {
-      modules: [Navigation],
+      modules: [Navigation, Pagination],
       navigation: {
         nextEl: '.feedback-next',
         prevEl: '.feedback-prev',
+      },
+            pagination: {
+        el: '.feedback-pagination-list',
+        clickable: true,
+        bulletClass: 'feedback-pagination-item',
+        bulletActiveClass: 'is-active',
+        renderBullet: (index, className) => `<li class="${className}"></li>`,
       },
     });
 

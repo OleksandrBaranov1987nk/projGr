@@ -72,15 +72,48 @@ h2 {
   margin-top: 80px;
 }
 
-.feedback-pagination {
-  width: 112px;
-  height: 48px;
+.feedback-controls {
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+
+.feedback-pagination {
+
+  display: flex;
+  /* align-items: flex-end;
+  justify-content: flex-start; */
+  align-items: center;
+  /* justify-content: space-between;
+  align-items: center;
   flex-direction: row;
+  gap: 16px; */
+}
+
+.feedback-nav {
+  display: flex;
   gap: 16px;
 }
+
+.feedback-pagination-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.feedback-pagination-item {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(8, 12, 9, 0.15);
+  cursor: pointer;
+}
+
+.feedback-pagination-item.is-active {
+  background: #080c09;
+}
+
 
 .feedback-btn {
   display: flex;
