@@ -3,10 +3,10 @@ import { glob } from 'glob';
 import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 import SortCss from 'postcss-sort-media-queries';
-import fs from 'fs'; // додано
 
 export default defineConfig(({ command }) => {
   return {
+    base: '/project-group-14/', 
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
@@ -39,11 +39,7 @@ export default defineConfig(({ command }) => {
       emptyOutDir: true,
     },
     plugins: [
-      injectHTML({
-        injectData: {
-          header: fs.readFileSync('./src/partials/header.html', 'utf-8'),
-        },
-      }),
+      injectHTML(),
       FullReload(['./src/**/**.html']),
       SortCss({
         sort: 'mobile-first',
