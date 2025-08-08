@@ -2,7 +2,7 @@
   padding: 32px 0;
 }
 
-.feedback__title { {
+.feedback__title  {
   font-size: 24px;
   text-align: center;
   margin-bottom: 8px;
@@ -95,5 +95,4 @@
 
 .feedback__pagination .swiper-pagination-bullet-active {
   background-color: #ff6b0a;
-}
 }
