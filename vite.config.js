@@ -3,6 +3,7 @@ import { glob } from 'glob';
 import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 import SortCss from 'postcss-sort-media-queries';
+import fs from 'fs'; // додано
 
 export default defineConfig(({ command }) => {
   return {
@@ -38,7 +39,11 @@ export default defineConfig(({ command }) => {
       emptyOutDir: true,
     },
     plugins: [
-      injectHTML(),
+      injectHTML({
+        injectData: {
+          header: fs.readFileSync('./src/partials/header.html', 'utf-8'),
+        },
+      }),
       FullReload(['./src/**/**.html']),
       SortCss({
         sort: 'mobile-first',
