@@ -1,8 +1,4 @@
-import Swiper from 'swiper';
-import { Navigation, Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+
 import Raty from 'raty-js';
 
 import { api } from '../api.js';
@@ -17,13 +13,13 @@ function roundRating(value) {
 }
 
 export async function initFeedback() {
-  const section = document.querySelector('.feedback');
-  if (!section) return;
+  const list = document.querySelector('.feedback-list');
+  if (!list) return;
 
   try {
     const { data } = await api.get('/feedbacks');
     const items = Array.isArray(data) ? data.slice(0, 10) : (data.results || []).slice(0, 10);
-    const list = section.querySelector('.feedback__list');
+
 
     const markup = items
       .map(item => {
@@ -31,10 +27,10 @@ export async function initFeedback() {
         const text = item.comment || item.review || item.feedback || item.text || '';
         const user = item.user || item.name || item.author || 'Анонім';
         return `
-          <li class="feedback__item swiper-slide">
-            <div class="feedback__rating" data-score="${rating}"></div>
-            <p class="feedback__text">${text}</p>
-            <p class="feedback__user">${user}</p>
+           <li class="feedback-item">
+            <div class="feedback-rating" data-score="${rating}"></div>
+            <p class="feedback-text text">${text}</p>
+            <p class="feedback-user">${user}</p>         
           </li>
         `;
       })
@@ -42,7 +38,7 @@ export async function initFeedback() {
 
     list.innerHTML = markup;
 
-    list.querySelectorAll('.feedback__rating').forEach(el => {
+    list.querySelectorAll('.feedback-rating').forEach(el => {
       const score = parseFloat(el.dataset.score);
       const raty = new Raty(el, {
         readOnly: true,
@@ -55,18 +51,7 @@ export async function initFeedback() {
       raty.init();
     });
 
-    new Swiper('.feedback__wrapper', {
-      modules: [Navigation, Pagination],
-      slidesPerView: 1,
-      navigation: {
-        nextEl: '.feedback__btn--next',
-        prevEl: '.feedback__btn--prev',
-      },
-      pagination: {
-        el: '.feedback__pagination',
-        clickable: true,
-      },
-    });
+
   } catch (err) {
     console.error('Failed to load feedbacks', err);
   }
