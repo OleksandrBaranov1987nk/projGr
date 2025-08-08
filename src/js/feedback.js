@@ -1,5 +1,8 @@
 
 import Raty from 'raty-js';
+import Swiper from 'swiper';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
 
 import { api } from '../api.js';
 import starOn from '../img/star-full.svg';
@@ -27,7 +30,7 @@ export async function initFeedback() {
         const text = item.comment || item.review || item.feedback || item.text || '';
         const user = item.user || item.name || item.author || 'Анонім';
         return `
-           <li class="feedback-item">
+          <li class="feedback-item swiper-slide">
             <div class="feedback-rating" data-score="${rating}"></div>
             <p class="feedback-text text">${text}</p>
             <p class="feedback-user">${user}</p>         
@@ -51,8 +54,18 @@ export async function initFeedback() {
       raty.init();
     });
 
+        new Swiper('.feedback-swiper', {
+      modules: [Navigation],
+      navigation: {
+        nextEl: '.feedback-next',
+        prevEl: '.feedback-prev',
+      },
+    });
+
 
   } catch (err) {
     console.error('Failed to load feedbacks', err);
   }
 }
+
+
