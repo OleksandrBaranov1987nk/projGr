@@ -1,78 +1,99 @@
 .feedback-section {
-  padding: 40px 0;
+  padding: 32px 0;
 }
 
-.feedback-title {
+.feedback__title { {
   font-size: 24px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.feedback__subtitle {
+  font-size: 14px;
   text-align: center;
   margin-bottom: 24px;
 }
 
-.feedback-form {
+.feedback__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feedback__item {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
 }
 
-.feedback-input,
-.feedback-textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.feedback__text {
+  font-size: 14px;
+  margin: 0;
 }
 
-.feedback-textarea {
-  resize: vertical;
-  min-height: 120px;
+.feedback__user {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
 }
 
-.feedback-submit {
-  padding: 12px 24px;
-  background-color: #4caf50;
-  color: #fff;
+.feedback__rating img {
+  width: 16px;
+  height: 16px;
+}
+
+.feedback__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 16px;
+}
+
+.feedback__btn {
+  padding: 0;
+  background-color: transparent;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
-  align-self: flex-end;
 }
 
-/* Mobile adaptive from 375px */
-@media (min-width: 375px) {
-  .feedback-form {
-    max-width: 343px;
-    margin: 0 auto;
-  }
+.feedback__btn.swiper-button-disabled {
+  opacity: 0.3;
+  cursor: default;
 }
 
-/* Tablet from 768px */
-@media (min-width: 768px) {
-  .feedback-form {
-    max-width: 704px;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
-  .feedback-input {
-    flex: 1 1 calc(50% - 8px);
-  }
-
-  .feedback-textarea {
-    flex-basis: 100%;
-  }
-
-  .feedback-submit {
-    margin-left: auto;
-  }
+.feedback__btn:hover .feedback__icon,
+.feedback__btn:focus .feedback__icon {
+  stroke: #ff6b0a;
 }
 
-/* Desktop from 1440px */
-@media (min-width: 1440px) {
-  .container {
-    max-width: 1440px;
-  }
+.feedback__icon {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: #0e0e0e;
+  stroke-width: 2;
+}
 
-  .feedback-form {
-    max-width: 820px;
-  }
+.feedback__pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.feedback__pagination .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background-color: #e0e0e0;
+  opacity: 1;
+  margin: 0 4px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+.feedback__pagination .swiper-pagination-bullet-active {
+  background-color: #ff6b0a;
+}
 }
