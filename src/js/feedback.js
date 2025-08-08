@@ -21,8 +21,9 @@ export async function initFeedback() {
 
   try {
     const { data } = await api.get('/feedbacks');
+    
     const items = Array.isArray(data) ? data.slice(0, 10) : (data.results || []).slice(0, 10);
-
+    console.log(data);
 
     const markup = items
       .map(item => {
@@ -67,5 +68,6 @@ export async function initFeedback() {
     console.error('Failed to load feedbacks', err);
   }
 }
+
 
 
