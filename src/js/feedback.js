@@ -20,17 +20,24 @@ export async function initFeedback() {
   if (!list) return;
 
   try {
-    const { data } = await api.get('/feedbacks');
+    // 
+    const { data } = await api.get('/feedbacks', {
+  params: {
+    limit: 10,
+    page: 1,
+  },
+});
     
-    const items = Array.isArray(data) ? data.slice(0, 10) : (data.results || []).slice(0, 10);
-    console.log(data);
+    // const items = Array.isArray(data) ? data.slice(0, 10) : (data.results || []).slice(0, 10);
+    const items = Array.isArray(data.feedbacks) ? data.feedbacks.slice(0, 10) : [];
+    // console.log(data);
 
     const markup = items
-      .map(item => {
-        const rating = roundRating(item.rating ?? item.score ?? 0);
-        const text = item.comment || item.review || item.feedback || item.text || '';
-        const user = item.user || item.name || item.author || 'Анонім';
-        return `
+       .map(item => {
+    const rating = roundRating(item.rate ?? 0);  // <-- заменили rating → rate
+    const text = item.descr || '';               // <-- заменили comment → descr
+    const user = item.name || 'Анонім';          // <-- name — уже подходит
+    return `
           <li class="feedback-item swiper-slide">
             <div class="feedback-rating" data-score="${rating}"></div>
             <p class="feedback-text text">${text}</p>
