@@ -84,5 +84,6 @@ export async function initFeedback() {
   }
 }
 
+initFeedback();
 
 
